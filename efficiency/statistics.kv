@@ -1,0 +1,53 @@
+<StatisticsScreen>:
+    FloatLayout:
+        BoxLayout:  # Основной контейнер
+            orientation: 'vertical'
+            padding: 25
+            spacing: 35
+            size_hint_y: None
+            height: self.minimum_height
+
+            # Заголовок панели
+            BoxLayout:
+                size_hint_y: None
+                height: 130
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.6, 0.8, 1  # Цвет панели
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Label:
+                    text: "Статистика сотрудников"
+                    font_size: 36
+                    color: 1, 1, 1, 1
+                    bold: True
+                    halign: "left"  # Выравнивание заголовка по левому краю
+
+            # Прокручиваемый список статистики сотрудников
+            ScrollView:
+                size_hint_y: None
+                height: 1000
+                BoxLayout:
+                    id: statistics_list
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: 100
+                    padding: 20
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 0  # Прозрачный фон
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+
+            # Кнопка "Назад"
+            Button:
+                text: 'Назад'
+                size_hint_y: None
+                height: 130
+                font_size: 30
+                background_color: 0.8, 0.8, 0.8, 1
+                color: 0, 0, 0, 1
+                on_press: app.root.current = 'admin' if app.user_role == 'admin' else 'user'

@@ -1,0 +1,118 @@
+<UserScreen>:
+    FloatLayout:
+        ScrollView:  # Прокрутка для всего экрана
+            size_hint: (1, 1)
+            do_scroll_x: False
+
+            BoxLayout:  # Основной контейнер
+                orientation: 'vertical'
+                padding: 30
+                spacing: 25
+                size_hint_y: None
+                height: self.minimum_height
+
+                # Заголовок панели
+                BoxLayout:
+                    size_hint_y: None
+                    height: 150
+                    canvas.before:
+                        Color:
+                            rgba: 0.2, 0.6, 0.8, 1  # Цвет панели
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text: "Панель пользователя"
+                        font_size: 36
+                        color: 1, 1, 1, 1
+                        bold: True
+
+                # Список сотрудников (отображение)
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: 250
+                    spacing: 30  # Увеличено расстояние между элементами
+
+                    Label:
+                        text: "Сотрудники:"
+                        font_size: 36
+                        color: 1, 1, 1, 1
+                        size_hint_y: None
+                        height: 30
+
+                    ScrollView:
+                        size_hint_y: None
+                        height: 180
+                        BoxLayout:
+                            id: employee_list
+                            orientation: 'vertical'
+                            size_hint_y: None
+                            height: self.minimum_height
+                            spacing: 25  # Увеличено расстояние между записями
+                            padding: 15, 10
+
+                # Выбранный сотрудник
+                Label:
+                    id: selected_employee
+                    text: "Выбранный сотрудник: None"
+                    font_size: 36
+                    size_hint_y: None
+                    height: 50
+                    color: 1, 1, 1, 1
+
+                # Кнопка для отображения эффективности
+                Button:
+                    text: "Показать эффективность"
+                    size_hint_y: None
+                    height: 130
+                    font_size: 36
+                    background_color: 0.2, 0.6, 0.8, 1
+                    color: 1, 1, 1, 1
+                    on_press: root.show_effectiveness()
+
+                # Эффективность (текущая и предыдущая)
+                Label:
+                    id: effectiveness
+                    text: "Текущая эффективность: N/A"
+                    font_size: 36
+                    size_hint_y: None
+                    height: 50
+                    color: 1, 1, 1, 1
+
+                Label:
+                    id: previous_effectiveness
+                    text: "Предыдущая эффективность: N/A"
+                    font_size: 36
+                    size_hint_y: None
+                    height: 50
+                    color: 1, 1, 1, 1
+
+                # История (вывод оценок)
+                Label:
+                    text: "История:"
+                    font_size: 36
+                    size_hint_y: None
+                    height: 50
+                    color: 0.2, 0.6, 0.8, 1
+
+                ScrollView:
+                    size_hint_y: None
+                    height: 500  # Увеличена высота для удобства
+                    BoxLayout:
+                        id: history_list
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        spacing: 100  # Увеличено расстояние между записями в истории
+                        padding: 15, 10
+
+                # Кнопка выхода
+                Button:
+                    text: 'Выйти'
+                    size_hint_y: None
+                    height: 130
+                    font_size: 36
+                    background_color: 0.8, 0.8, 0.8, 1
+                    color: 0, 0, 0, 1
+                    on_press: app.root.current = 'login'

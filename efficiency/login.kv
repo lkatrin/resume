@@ -1,0 +1,88 @@
+<LoginScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 25
+        spacing: 35
+        size_hint: None, None
+        size: 700, 800  # Увеличенный размер под более крупные элементы
+        pos_hint: {"center_x": 0.5, "center_y": 0.4}
+
+        # Заголовок
+        BoxLayout:
+            size_hint_y: None
+            height: 150
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.6, 0.8, 1  # Цвет панели
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Label:
+                text: "Вход в систему"
+                font_size: 36  # Ещё крупнее
+                color: 1, 1, 1, 1
+                bold: True
+
+        # Поле для ввода логина
+        TextInput:
+            id: username
+            hint_text: "Введите логин"
+            size_hint_y: None
+            height: 130  # Поля стали больше
+            multiline: False
+            font_size: 30
+            background_normal: ''
+            background_color: 0.95, 0.95, 0.95, 1
+            padding: 20, 20
+
+        # Поле для ввода пароля
+        TextInput:
+            id: password
+            hint_text: "Введите пароль"
+            size_hint_y: None
+            height: 130
+            password: True
+            multiline: False
+            font_size: 30
+            background_normal: ''
+            background_color: 0.95, 0.95, 0.95, 1
+            padding: 20, 20
+
+        # Сообщение об ошибке
+        Label:
+            id: error
+            text: ""
+            color: 1, 0, 0, 1
+            font_size: 28
+            size_hint_y: None
+            height: 80
+
+        # Кнопка "Войти"
+        Button:
+            text: "Войти"
+            size_hint_y: None
+            height: 130  # Увеличенные кнопки
+            font_size: 30
+            background_color: 0.2, 0.6, 0.8, 1
+            color: 1, 1, 1, 1
+            on_press: root.login()
+
+        # Кнопка "Регистрация"
+        Button:
+            text: "Регистрация"
+            size_hint_y: None
+            height: 130
+            font_size: 30
+            background_color: 0.4, 0.7, 0.9, 1
+            color: 1, 1, 1, 1
+            on_press: root.go_to_register()
+
+        # Кнопка "Забыли пароль?"
+        Button:
+            text: "Забыли пароль?"
+            size_hint_y: None
+            height: 130
+            font_size: 30
+            background_color: 0.8, 0.8, 0.8, 1
+            color: 0, 0, 0, 1
+            on_press: app.root.current = 'recovery'

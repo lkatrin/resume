@@ -1,0 +1,99 @@
+<AdminEmployeeManagementScreen>:
+    FloatLayout:
+        ScrollView:  # Прокрутка для всего содержимого
+            size_hint: (1, 1)  # Занимает весь экран
+            do_scroll_x: False  # Отключаем горизонтальную прокрутку
+
+            BoxLayout:  # Основной контейнер
+                orientation: 'vertical'
+                padding: 25
+                spacing: 35
+                size_hint_y: None  # Высота адаптируется под содержимое
+                height: self.minimum_height
+
+                # Заголовок панели
+                BoxLayout:
+                    size_hint_y: None
+                    height: 150
+                    canvas.before:
+                        Color:
+                            rgba: 0.2, 0.6, 0.8, 1  # Цвет панели
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text: "Управление сотрудниками"
+                        font_size: 36
+                        color: 1, 1, 1, 1
+                        bold: True
+
+                # Поля для ввода (редактирование имени и должности сотрудника)
+                TextInput:
+                    id: new_employee_name
+                    hint_text: 'Введите новое имя сотрудника'
+                    size_hint_y: None
+                    height: 130
+                    font_size: 30
+                    background_normal: ''
+                    background_color: 0.95, 0.95, 0.95, 1
+                    padding: 20, 20
+
+                TextInput:
+                    id: employee_position
+                    hint_text: 'Введите новую должность сотрудника'
+                    size_hint_y: None
+                    height: 130
+                    font_size: 30
+                    background_normal: ''
+                    background_color: 0.95, 0.95, 0.95, 1
+                    padding: 20, 20
+
+                # Кнопки для удаления и редактирования сотрудника
+                Button:
+                    text: 'Редактировать сотрудника'
+                    size_hint_y: None
+                    height: 130
+                    font_size: 30
+                    background_color: 0.2, 0.6, 0.8, 1
+                    color: 1, 1, 1, 1
+                    on_press: root.edit_employee()
+
+                Button:
+                    text: 'Удалить сотрудника'
+                    size_hint_y: None
+                    height: 130
+                    font_size: 30
+                    background_color: 0.8, 0.2, 0.2, 1
+                    color: 1, 1, 1, 1
+                    on_press: root.delete_employee()
+
+                # Текущая выбранная запись (отображение)
+                Label:
+                    id: selected_employee
+                    text: "Выбранный сотрудник: None"
+                    font_size: 30
+                    size_hint_y: None
+                    height: 50
+                    color: 1, 1, 1, 1
+
+                # Список сотрудников
+                ScrollView:
+                    size_hint_y: None
+                    height: 350
+                    BoxLayout:
+                        id: employee_list
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        spacing: 20  # Увеличиваем расстояние между записями
+                        padding: 20, 10  # Добавим внутренние отступы
+
+                # Кнопка "Назад"
+                Button:
+                    text: 'Назад'
+                    size_hint_y: None
+                    height: 130
+                    font_size: 30
+                    background_color: 0.8, 0.8, 0.8, 1
+                    color: 0, 0, 0, 1
+                    on_press: app.root.current = 'admin'

@@ -1,0 +1,233 @@
+<AdminRatingScreen>:
+    FloatLayout:
+        ScrollView:  # Прокрутка для всего содержимого
+            size_hint: (1, 1)  # Занимает весь экран
+            do_scroll_x: False  # Отключаем горизонтальную прокрутку
+
+            BoxLayout:  # Основной контейнер
+                orientation: 'vertical'
+                padding: 25
+                spacing: 25
+                size_hint_y: None  # Высота адаптируется под содержимое
+                height: self.minimum_height
+
+                # Заголовок панели
+                BoxLayout:
+                    size_hint_y: None
+                    height: 150
+                    canvas.before:
+                        Color:
+                            rgba: 0.2, 0.6, 0.8, 1  # Цвет панели
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text: "Оценка сотрудника"
+                        font_size: 36  # Увеличен шрифт
+                        color: 1, 1, 1, 1
+                        bold: True
+
+                # Выбор сотрудника для оценки
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: 150
+                    spacing: 20
+
+                    Label:
+                        text: "Выберите сотрудника:"
+                        font_size: 30  # Увеличен шрифт
+                        color: 1, 1, 1, 1
+                        size_hint_y: None
+                        height: 40
+                        halign: 'left'  # Выравнивание по левому краю
+
+                    Spinner:
+                        id: employee_spinner
+                        text: "Выберите сотрудника"
+                        size_hint: (1, None)
+                        height: 100  # Сделан немного выше
+                        font_size: 30  # Увеличен шрифт
+
+                # Оценочные поля
+                GridLayout:
+                    cols: 2
+                    spacing: 20
+                    size_hint_y: None
+                    height: self.minimum_height
+                    row_default_height: 80
+                    row_force_default: True
+
+                    # Профессиональные навыки
+                    Label:
+                        text: "Профессиональные навыки:"
+                        font_size: 30
+                        color: 1, 1, 1, 1
+                        size_hint_x: None
+                        width: 700
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+                    BoxLayout:
+                        size_hint_x: 1
+                        padding: [0, 0, 20, 0]
+                        TextInput:
+                            id: professional_skills
+                            multiline: False
+                            input_filter: 'int'
+                            font_size: 30
+                            background_normal: ''
+                            background_color: 0.95, 0.95, 0.95, 1
+                            padding: 10, 10
+                            size_hint_x: None
+                            width: 150
+
+                    # Командная работа
+                    Label:
+                        text: "Командная работа:"
+                        font_size: 30
+                        color: 1, 1, 1, 1
+                        size_hint_x: None
+                        width: 400
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+                    BoxLayout:
+                        size_hint_x: 1
+                        padding: [0, 0, 20, 0]
+                        TextInput:
+                            id: teamwork
+                            multiline: False
+                            input_filter: 'int'
+                            font_size: 30
+                            background_normal: ''
+                            background_color: 0.95, 0.95, 0.95, 1
+                            padding: 10, 10
+                            size_hint_x: None
+                            width: 150
+
+                    # Инициативность
+                    Label:
+                        text: "Инициативность:"
+                        font_size: 30
+                        color: 1, 1, 1, 1
+                        size_hint_x: None
+                        width: 400
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+                    BoxLayout:
+                        size_hint_x: 1
+                        padding: [0, 0, 20, 0]
+                        TextInput:
+                            id: initiative
+                            multiline: False
+                            input_filter: 'int'
+                            font_size: 30
+                            background_normal: ''
+                            background_color: 0.95, 0.95, 0.95, 1
+                            padding: 10, 10
+                            size_hint_x: None
+                            width: 150
+
+                    # Управление временем
+                    Label:
+                        text: "Управление временем:"
+                        font_size: 30
+                        color: 1, 1, 1, 1
+                        size_hint_x: None
+                        width: 400
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+                    BoxLayout:
+                        size_hint_x: 1
+                        padding: [0, 0, 20, 0]
+                        TextInput:
+                            id: time_management
+                            multiline: False
+                            input_filter: 'int'
+                            font_size: 30
+                            background_normal: ''
+                            background_color: 0.95, 0.95, 0.95, 1
+                            padding: 10, 10
+                            size_hint_x: None
+                            width: 150
+
+                    # Ответственность
+                    Label:
+                        text: "Ответственность:"
+                        font_size: 30
+                        color: 1, 1, 1, 1
+                        size_hint_x: None
+                        width: 400
+                        halign: 'left'
+                        valign: 'middle'
+                        text_size: self.size
+                    BoxLayout:
+                        size_hint_x: 1
+                        padding: [0, 0, 20, 0]
+                        TextInput:
+                            id: responsibility
+                            multiline: False
+                            input_filter: 'int'
+                            font_size: 30
+                            background_normal: ''
+                            background_color: 0.95, 0.95, 0.95, 1
+                            padding: 10, 10
+                            size_hint_x: None
+                            width: 150
+
+                # Поле для комментариев
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: 160
+                    spacing: 10
+
+                    Label:
+                        text: "Комментарии:"
+                        font_size: 30  # Увеличен шрифт
+                        color: 1, 1, 1, 1
+                        size_hint_y: None
+                        height: 40
+                        halign: 'left'
+
+                    TextInput:
+                        id: comments
+                        multiline: True
+                        font_size: 30
+                        background_normal: ''
+                        background_color: 0.95, 0.95, 0.95, 1
+                        padding: 10, 10
+                        size_hint_y: None
+                        height: 100
+
+                # Кнопка "Сохранить оценку"
+                Button:
+                    text: "Сохранить оценку"
+                    size_hint_y: None
+                    height: 130
+                    font_size: 32
+                    background_color: 0.2, 0.6, 0.8, 1
+                    color: 1, 1, 1, 1
+                    on_press: root.save_rating()
+
+                # Успешное сообщение
+                Label:
+                    id: success_message
+                    text: ""
+                    size_hint_y: None
+                    height: 50
+                    font_size: 30
+                    color: (0, 1, 0, 1)
+
+                # Кнопка "Назад"
+                Button:
+                    text: 'Назад'
+                    size_hint_y: None
+                    height: 130
+                    font_size: 32
+                    background_color: 0.8, 0.8, 0.8, 1
+                    color: 0, 0, 0, 1
+                    on_press: app.root.current = 'admin'

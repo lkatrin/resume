@@ -1,0 +1,118 @@
+<PasswordRecoveryScreen>:
+    name: 'recovery'
+
+    FloatLayout:
+        ScrollView:  # Прокрутка для всего содержимого
+            size_hint: (1, 1)  # Прокрутка занимает весь экран
+            do_scroll_x: False  # Отключаем горизонтальную прокрутку
+
+            BoxLayout:  # Основной контейнер
+                orientation: 'vertical'
+                padding: 25
+                spacing: 35
+                size_hint_y: None  # Фиксированная высота для прокрутки
+                height: self.minimum_height  # Высота адаптируется под содержимое
+
+                # Заголовок
+                BoxLayout:
+                    size_hint_y: None
+                    height: 150
+                    canvas.before:
+                        Color:
+                            rgba: 0.2, 0.6, 0.8, 1  # Цвет панели
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text: "Восстановление пароля"
+                        font_size: 36
+                        color: 1, 1, 1, 1
+                        bold: True
+
+                # Поле для ввода имени пользователя
+                TextInput:
+                    id: username
+                    hint_text: "Введите логин"
+                    size_hint_y: None
+                    height: 130
+                    multiline: False
+                    font_size: 30
+                    background_normal: ''
+                    background_color: 0.95, 0.95, 0.95, 1
+                    padding: 20, 20
+
+                # Кнопка для получения вопроса
+                Button:
+                    text: "Получить секретный вопрос"
+                    size_hint_y: None
+                    height: 130
+                    font_size: 30
+                    background_color: 0.2, 0.6, 0.8, 1
+                    color: 1, 1, 1, 1
+                    on_press: root.fetch_question()
+
+                # Поле для отображения секретного вопроса
+                Label:
+                    id: question
+                    text: "Здесь будет ваш секретный вопрос"
+                    size_hint_y: None
+                    height: 80
+                    font_size: 30
+                    color: 1, 1, 1, 1  # Белый цвет для текста
+                    halign: 'center'
+                    valign: 'middle'
+                    text_size: self.size
+
+                # Поле для ввода ответа на секретный вопрос
+                TextInput:
+                    id: answer
+                    hint_text: "Введите ответ на секретный вопрос"
+                    size_hint_y: None
+                    height: 130
+                    multiline: False
+                    font_size: 30
+                    background_normal: ''
+                    background_color: 0.95, 0.95, 0.95, 1
+                    padding: 20, 20
+
+                # Поле для ввода нового пароля
+                TextInput:
+                    id: new_password
+                    hint_text: "Введите новый пароль"
+                    size_hint_y: None
+                    height: 130
+                    password: True
+                    multiline: False
+                    font_size: 30
+                    background_normal: ''
+                    background_color: 0.95, 0.95, 0.95, 1
+                    padding: 20, 20
+
+                # Сообщение об ошибке
+                Label:
+                    id: error
+                    text: ""
+                    color: 1, 0, 0, 1
+                    font_size: 30
+                    size_hint_y: None
+                    height: 80
+
+                # Кнопка для подтверждения
+                Button:
+                    text: "Сбросить пароль"
+                    size_hint_y: None
+                    height: 130
+                    font_size: 30
+                    background_color: 0.4, 0.7, 0.9, 1
+                    color: 1, 1, 1, 1
+                    on_press: root.reset_password()
+
+                # Кнопка для возврата к логину
+                Button:
+                    text: "Назад к входу"
+                    size_hint_y: None
+                    height: 130
+                    font_size: 30
+                    background_color: 0.8, 0.8, 0.8, 1
+                    color: 0, 0, 0, 1
+                    on_press: app.root.current = 'login'
